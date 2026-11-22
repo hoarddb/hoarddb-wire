@@ -1,0 +1,111 @@
+== NOT_FOUND (bucket) 0x01 exit=2
+bucket "users" not found in database "app": the declaration fetch returned no document under that name in app._buckets. Run 'show buckets in app' to list what exists, or 'create bucket users { V_Field string }' to create it
+
+== NOT_FOUND (document) 0x01 exit=2
+document "u-1" is not in app.users. Run 'db.users.list({limit: 10})' to see what exists, or 'db.users.insert({_id_: "u-1", V_field: V_value})' to create it
+
+== UNAVAILABLE (poisoned log, failed append) 0x06 exit=8
+writes to "app.users" are paused on n2: the write at position V_epoch:V_seq could not be appended to the retained log (V_cause). Nothing was acknowledged and no position was consumed; the slot resumes after the node restarts and replays. Run 'show replication for app.users slot 17' to list the paused slots, and 'nodes' to see the node
+
+== UNAVAILABLE (declaration write not durable) 0x06 exit=8
+create bucket app.users: the declaration write was confirmed by 1 of 3 copies, and a declaration must be durable on every copy that is ready to serve it before a schema change is published, so the change was not committed and nothing was altered. Nothing was changed. Retry in a few seconds; 'show replication for app._buckets slot 17' lists the copies that are behind and 'nodes' shows whether they are down, and a database whose replication factor is above the copies that can be ready is set back with 'alter database app { replication_factor: 5 }'
+
+== RESULT_TOO_LARGE 0x0E exit=2
+list app.users: the first document alone is 5 bytes and a document is never split, so the page cannot be built. Read it by key: 'db.users["u-1"].get()'
+
+== FIELD_TYPE 0x10 exit=2
+field "V_field" is not declared in app.users, and a bucket stores only declared fields (declared: V_declared). Run 'alter bucket users { add V_field V_type }' to declare it, or correct the field name
+
+== DOCUMENT_EXISTS 0x12 exit=2
+document "u-1" is already in app.users, and insert never replaces. Run 'db.users.upsert({_id_: "u-1", …})' to replace it, or 'db.users["u-1"].get()' to read what is there
+
+== NOT_OWNER 0x13 exit=8
+node n2 is not the owner of "u-1" in app.users at epoch 3: n1 owns slot 17. Nothing was written. Send it to n1, or to any node and let it forward
+
+== STALE_EPOCH 0x14 exit=8
+slot 17 of app is owned by n1 at epoch 3 and this request carried epoch 2, so the two sides disagree and nothing was applied (a table older than the node, and a node that learned a higher epoch from a frame, both land here). Refresh with 'show placement for u-1 in app.users' and retry
+
+== OWNER_DOWN 0x15 exit=8
+create bucket app.users: n1 owns 5 of the 8192 slots this call must read and did not answer, so a partial result would look complete. Nothing was returned. Run 'nodes' to see n1; retry in a few seconds, or start its replacement with 'replace-node n1 --with n1@192.0.2.1:7000'
+
+== NO_QUORUM 0x16 exit=8
+this node cannot see a majority of the cluster's 3 voters (5 answered), so it refuses reads and writes: what it holds may be missing acknowledged writes. Run 'nodes' to see which voters are down, and retry when a majority answers
+
+== RF_UNSUPPORTED 0x17 exit=2
+replication factor 3 needs at least 3 voters, at least 3 of them holding data; this cluster has 3 voters and 2 data members. Run 'nodes' to see the members, add a data node with 'join n2@192.0.2.1:7000', or set 'alter database app { replication_factor: 5 }'
+
+== RF_UNSUPPORTED (create, voters) 0x17 exit=2
+replication factor 3 needs at least 3 voters, and this cluster has 3. Nothing was created. Run 'nodes' to see the members, add a voter with 'join n2@192.0.2.1:7000', then re-run 'create database app'
+
+== RF_UNSUPPORTED (create, data members) 0x17 exit=2
+replication factor 3 needs at least 3 data members, and this cluster has 2. Nothing was created. Run 'nodes' to see the members, add a data node with 'join n2@192.0.2.1:7000', then re-run 'create database app'
+
+== LEASE_LAPSED 0x18 exit=8
+node n2 stopped serving reads and writes V_lapsed_ms ms ago because it could not renew its lease (step_down_ms V_step_down_ms). Nothing was written. Run 'nodes': the cluster elects an owner for the slot, then retry; 'show placement for u-1 in app.users' names it
+
+== EPOCH_FENCED 0x19 exit=—
+refused V_kind from n2 at epoch 3: this node is at epoch 2
+
+== SEQ_GAP 0x1A exit=—
+refused position 3:5 for slot 17 of app from n2: this copy is at 3:4, and 3:V_next…3:V_last are missing. Catching up; no client action
+
+== LOG_BELOW_HORIZON 0x1B exit=8
+cannot catch n2 up for slot 17 of app: it needs V_need_pos and the log's oldest record for the slot is V_oldest_pos (V_seconds s kept, V_bytes cap). The copy stays behind until the slot is re-seeded, which this build does not start by itself; the slot is served by its other copies
+
+== STATE_MOVED 0x1C exit=8
+refused: the cluster state moved to state_seq 5 while this command was built on 4. Nothing was changed. Re-run it ('nodes' prints the current state_seq)
+
+== CONFLICT 0x1D exit=8
+node "n2" is still active at epoch 3, so a replacement cannot take its identity: two nodes writing as n2 would both own its slots. Stop it and wait for it to be declared down ('nodes' shows the state), then 'replace-node n2 --with n2@192.0.2.1:7000'
+
+== CLUSTER_MISMATCH 0x1E exit=2
+node "n2" belongs to cluster V_node_cluster… but this node belongs to cluster V_this_cluster…. Start it with 'join n2@V_seed_addr'; its own state is discarded and its documents are re-seeded
+
+== NOT_A_DATA_NODE 0x1F exit=2
+node "n2" is a witness: it holds the cluster state and a vote, and no documents. Send this to a data node ('nodes' marks each node data or witness)
+
+== SCHEMA_NOT_CURRENT 0x20 exit=8
+app.users is not writable: its declaration is at schema version 2 and the database's schema_version is V_s, so a field may have been added, retired or removed since it was read and this operation would use the wrong ones. Nothing was written. The owner already re-read the declaration once and the bucket's own table moved, so retrying will not help: run 'describe bucket users in app' to see the declaration in force, and if an alter of the bucket was interrupted, run the same 'alter bucket users { add V_field V_type }' again to finish it
+
+== SCHEMA_NOT_CURRENT (stale client header) 0x20 exit=8
+app.users changed after this client read it: the client holds declaration version 2 and the table in force is version V_s, so a field may have been added or retired and this write might use the wrong ones. Nothing was written. Read the bucket again and send the write once more, which the hoardDB drivers do by themselves: 'describe bucket users in app' shows the fields in force
+
+== BUCKET_DROPPING 0x21 exit=8
+bucket "users" in database "app" is being dropped (5 of 8192 slots swept), and a dropping bucket accepts no reads or writes. Run 'show buckets in app' to watch it leave the list; the name is free when the sweep finishes and the declaration is deleted
+
+== DECL_UNAVAILABLE 0x22 exit=8
+cannot read the declaration of bucket "users" in database "app": the node that stores it did not answer in time (it may be busy, or down), and this node holds no cached declaration for that name. Nothing was written. Run 'nodes': if every member is active, run 'status' on each node: Serving: ok means the read was only slow, so send the write again; a member that is not active is the one to bring back
+
+== BUCKET_EXISTS 0x23 exit=2
+bucket "users" already exists in database "app" with id V_id16, state active. Run 'show buckets in app' to see it, or 'describe bucket users in app' to see its fields and the version it was created with; if the field table differs, this retry is old — re-read the declaration before trying again
+
+== RESERVED_NAME 0x24 exit=2
+"V_name" cannot be a bucket name: names beginning with "_" are reserved for system buckets, and every database has the system bucket _buckets, which holds the declaration of each bucket. Run 'show buckets in app' to list the buckets you can create, or choose a name without a leading underscore
+
+== BUCKET_ID_COLLISION 0x25 exit=8
+could not claim a free bucket id for "users" in database "app" after 3 draws; nothing was created. Retry 'create bucket users in app { … }': every attempt draws fresh ids
+
+== SEED_NOT_HELD 0x26 exit=2
+slot 17 of database "app" is active on this node, and only a seeding or stalled slot can be restarted, so nothing was changed. Run 'status seeding app 17' to see it, or 'nodes' to see which node owns the slot
+
+== SEED_NOT_HELD (forget) 0x26 exit=2
+slot 17 of database "app" has no record on this node, so there is nothing to forget and nothing was changed. Run 'status seeding' to list the slots this node keeps a record of, or 'nodes' to see which node owns the slot
+
+== REPLACE_TARGET_HAS_DATA 0x27 exit=8
+node "n2" cannot be replaced without --clear: its data directory holds 5 bytes of documents for this identity, and a replacement that starts with documents of its own would claim copies it never seeded. Run 'replace-node n2 --with n2@192.0.2.1:7000 --clear' to discard them and seed this identity's slots from their current owners
+
+== MINT_FAILED 0x28 exit=8
+insert could not mint an _id_: V_reason. Nothing was written. Retry, or supply one: 'db.users.insert({_id_: "u-1", V_field: V_value})'
+
+== CORRUPT_KEY 0x29 exit=2
+the store holds a key in bucket id V_bucket_id whose id component does not decode: unknown tag 0xV_tag at offset V_offset. Stop this node, move V_data_dir/store aside and keep it (its files may be the only copy), then restart and let the node be seeded
+
+== SEED_HELD 0x2A exit=8
+slot 17 of database "app" is active on this node, and a forget removes only a retired record, so nothing was changed. Run 'status seeding app 17' to see it, or 'seeding retry app 17' to start the slot again from a fresh cut
+
+== UNAVAILABLE (forwarded write, owner unreachable) 0x06 exit=8
+this node forwarded the write to n1, which owns its slot, and could not reach n1 (the connection failed, or n1 is in backoff after a recent failure). Whether the write was applied is UNKNOWN: n1 may have applied it before the connection broke. Run 'nodes' to see n1, then retry with the same request id, which is safe
+
+== UNAVAILABLE (forwarded read, owner unreachable) 0x06 exit=8
+this node forwarded the read to n1, which owns its slot, and could not reach n1 (the connection failed, or n1 is in backoff after a recent failure). Nothing was changed. Run 'nodes' to see n1, then retry in a few seconds
+

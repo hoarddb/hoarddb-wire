@@ -1,0 +1,176 @@
+# What each row of ringwire-structural.golden means: name, then the value the decoder reads from the
+# row's bytes (members by name, zero members left out, bytes as x'hex', floats as f'bits'; a value over
+# 1024 characters as its sha256). A row that differs is a decoder that reads the same bytes as another value.
+keyed/insert	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}]}}
+keyed/upsert	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:3 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}]}}
+keyed/update-every-code	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:2 OpCode:1 Value:x'1001000000'} {FieldID:3 OpCode:2} {FieldID:4 OpCode:3 Value:x'1003000000'} {FieldID:5 OpCode:4 Value:x'1004000000'} {FieldID:6 OpCode:5 Value:x'1005000000'} {FieldID:7 OpCode:6 Value:x'1006000000'} {FieldID:8 OpCode:7 Value:x'1007000000'} {FieldID:9 OpCode:8 Value:x'1008000000'} {FieldID:10 OpCode:9 Value:x'000b'}]}}
+keyed/delete	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:4 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000'}}
+keyed/verb-push	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:1 Value:x'2a0000000576001d000000001d00000002536b750004000000412d3100105072696365000c0000000000'}]}}
+keyed/verb-pop-one	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:2}]}}
+keyed/verb-pop-n	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:2 Value:x'0c000000106e000300000000'}]}}
+keyed/verb-take	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:3 Value:x'0f000000026b00030000006b310000'}]}}
+keyed/verb-put	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:4 Value:x'34000000026b00030000006b31000576001d000000001d00000002536b750004000000412d3100105072696365000c0000000000'}]}}
+keyed/verb-inc	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:5 Value:x'2b000000026b00030000006b31000576001000000000100000001056696577730001000000000872000100'}]}}
+keyed/claim	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:6 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Count:5 Now:1700000000000 Nonce:x'202122232425262728292a2b2c2d2e2f'}}
+keyed/ack	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:7 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Now:1700000000000 LeaseID:x'404142434445464748494a4b4c4d4e4f'}}
+keyed/release	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:8 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Now:1700000000000 LeaseID:x'404142434445464748494a4b4c4d4e4f'}}
+keyed/extend	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:9 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Now:1700000000000 Until:1700000030000 LeaseID:x'404142434445464748494a4b4c4d4e4f'}}
+keyed/update-guard	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:3 OpCode:3 Value:x'1001000000'}] Guard:[{FieldID:2 Value:x'020400000041646100'} {FieldID:5 Value:x'0a'}]}}
+keyed/update-return-after	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:3 OpCode:3 Value:x'1001000000'}] Return:1}}
+keyed/update-return-before	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:3 OpCode:3 Value:x'1001000000'}] Return:2}}
+keyed/update-guard-return-after	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:3 OpCode:3 Value:x'1001000000'}] Guard:[{FieldID:2 Value:x'020400000041646100'} {FieldID:5 Value:x'0a'}] Return:1}}
+keyed/delete-guard	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:4 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Guard:[{FieldID:2 Value:x'020400000041646100'} {FieldID:5 Value:x'0a'}]}}
+keyed/delete-guard-return-before	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Op:{Class:4 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Guard:[{FieldID:2 Value:x'020400000041646100'} {FieldID:5 Value:x'0a'}] Return:2}}
+keyed/get	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000'}}
+keyed/get-local	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Options:{Local:true}}}
+keyed/get-expand	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Options:{Local:true Expand:[{Field:"Author" Database:"app" Bucket:"User" Fields:["Name"] Where:x'14000000024369747900050000004f736c6f0000'} {Field:"Editor"}]}}}
+keyed/peek	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:130 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Limit:100}}
+keyed/store-list-first-page	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:131 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Limit:1000}}
+keyed/store-list-after	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:131 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Limit:1000 After:x'506b310000'}}
+keyed/store-list-after-expand	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:131 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Limit:1000 After:x'506b310000' Options:{Local:true Expand:[{Field:"Author" Database:"app" Bucket:"User" Fields:["Name"] Where:x'14000000024369747900050000004f736c6f0000'} {Field:"Editor"}]}}}
+keyed/store-count	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:132 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4}}
+keyed/lease-get	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:135 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Lease:x'404142434445464748494a4b4c4d4e4f'}}
+keyed/store-get	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:136 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Key:"k1"}}
+keyed/get-fields	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:137 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:["Name" "Age"]}}
+keyed/get-fields-local	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:137 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:["Name" "Age"] Options:{Local:true}}}
+keyed/nearest-cosine	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:138 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Nearest:&{Metric:1 K:10 Field:"Vector" Vector:x'0000003f0000a0bf00004040'}}}
+keyed/nearest-dot	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:138 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Nearest:&{Metric:2 K:10 Field:"Vector" Vector:x'0000003f0000a0bf00004040'}}}
+keyed/nearest-l2	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:138 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Nearest:&{Metric:3 K:10 Field:"Vector" Vector:x'0000003f0000a0bf00004040'}}}
+keyed/aggregate-describe	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:139 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Aggregate:&{}}}
+keyed/aggregate-sum	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:139 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Aggregate:&{Kind:1 Field:"Price"}}}
+keyed/aggregate-sum-by	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:139 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Limit:100 After:x'50412d310000' Aggregate:&{Kind:2 Field:"Price" By:"Sku"}}}
+keyed/aggregate-count-by	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:139 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' FieldID:4 Limit:10000 Aggregate:&{Kind:3 By:"Sku"}}}
+batch/every-class	sha256:361d235c84a0c31977d9bab51c786256df97ceeb452042e76bcd7ce85c4d274a
+batch/255-operations	sha256:fb1edbffa7b1d7294e391d84e6721977f7c5d0d6f06722ed273cd3074871cb6d
+getmany/get-and-get-fields	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Reads:[{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075300000'} {Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Options:{Local:true}} {Class:137 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075320000' Fields:["Name"]}]}
+getmany/255-keys	sha256:e0fadefbf457dd9b4078a75244e33428dda7ff8c7637203336749e7ea4aa0808
+list/names-only	{Database:"app" Bucket:"User"}
+list/every-member	{Database:"app" Bucket:"User" Filter:x'14000000024369747900050000004f736c6f0000' Fields:["Name" "Age"] Limit:&100 Cursor:x'010203' Epoch:7 Options:{Local:true Expand:[{Field:"Author" Fields:["Name"] Where:x'14000000024369747900050000004f736c6f0000'}]}}
+count/names-only	{Database:"app" Bucket:"User"}
+count/filter	{Database:"app" Bucket:"User" Filter:x'14000000024369747900050000004f736c6f0000'}
+entries/two-records	[{Slot:5 EncID:x'5075310000' Body:x'13000000024e616d6500040000004164610000'} {Slot:8191 EncID:x'5075320000' Body:x'12000000024e616d650003000000426f0000'}]
+reply/write-applied	{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Epoch:&7 StateSeq:&9}
+reply/insert-id	{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} ID:{Type:2 Value:x'03000000753100'} Epoch:&7 StateSeq:&9}
+reply/write-applied-degraded	{WriteOutcome:"applied_degraded" CopiesConfirmed:&0 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Epoch:&7 StateSeq:&9}
+reply/write-unknown	{WriteOutcome:"unknown" ServedBy:"node-a"}
+reply/write-document	{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Document:x'20000000025f69645f0003000000753100024e616d6500040000004164610000' Epoch:&7 StateSeq:&9}
+reply/write-deduped	{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Deduped:true Epoch:&7 StateSeq:&9}
+reply/write-deduped-document-truncated	{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Deduped:true DocumentTruncated:true Epoch:&7 StateSeq:&9}
+reply/write-not-applied	{WriteOutcome:"not_applied" ServedBy:"node-a" Reason:"guard" GuardField:"Name" Document:x'20000000025f69645f0003000000753100024e616d6500040000004164610000'}
+reply/found-elements	{Found:&true Elements:[x'1200000002536b750004000000412d310000' x'1200000002536b750004000000412d310000']}
+reply/found-false	{Found:&false}
+reply/elements-keys	{Found:&true Elements:[x'1200000002536b750004000000412d310000' x'1200000002536b750004000000412d310000'] Keys:["k1" "k2"]}
+reply/elements-keys-priorities	{Found:&true Elements:[x'1200000002536b750004000000412d310000' x'1200000002536b750004000000412d310000'] Keys:["e1" "e2"] Priorities:[-3 9]}
+reply/nearest	{Elements:[x'1200000002536b750004000000412d310000' x'1200000002536b750004000000412d310000'] Keys:["k1" "k2"] Scores:[f'3fe8000000000000' f'3fe0000000000000'] Scanned:&40 Skipped:&0}
+reply/claim-lease	{WriteOutcome:"applied" CopiesConfirmed:&1 ServedBy:"node-a" Position:&{Epoch:41 Seq:98214} Elements:[x'1200000002536b750004000000412d310000'] Lease:x'5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a'}
+reply/count	{Count:&1234}
+reply/count-zero	{Count:&0}
+reply/store-list-page	{Elements:[x'1200000002536b750004000000412d310000'] Keys:["k1"] More:true Cursor:x'506b310000'}
+reply/list-page	{Entries:x'00050550753100002020000000025f69645f0003000000753100024e616d6500040000004164610000' More:true Cursor:x'000550' Epoch:&7 StateSeq:&9}
+reply/expanded	{Found:&true Elements:[x'20000000025f69645f0003000000753100024e616d6500040000004164610000'] Expanded:[x'20000000025f69645f0003000000753100024e616d6500040000004164610000' x'20000000025f69645f0003000000753100024e616d6500040000004164610000'] ExpandFiltered:&1 Served:"local"}
+reply/expanded-owner	{Found:&true Elements:[x'20000000025f69645f0003000000753100024e616d6500040000004164610000'] Expanded:[x'20000000025f69645f0003000000753100024e616d6500040000004164610000'] Served:"owner"}
+reply/aggregate	{Aggregate:x'120000001273756d00630000000000000000'}
+reply/batch-ok	{Epoch:&7 StateSeq:&9 Outcome:"ok" Answers:[{Reply:&{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Epoch:&7 StateSeq:&9}} {Reply:&{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98214} Epoch:&7 StateSeq:&9}}]}
+reply/batch-partial	{Outcome:"partial" Answers:[{Reply:&{WriteOutcome:"applied" CopiesConfirmed:&2 ServedBy:"node-a" Position:&{Epoch:41 Seq:98213} Epoch:&7 StateSeq:&9}} {Error:&{Code:19 Message:"a fixed message, not a server wording" Detail:&{Owner:"node-b" OwnerAddr:"node-b.example:4433" Epoch:7 Slot:5}}} {Error:&{Code:18 Message:"a fixed message, not a server wording"}}]}
+error/no-detail	{Code:18 Message:"a fixed message, not a server wording"}
+error/detail-NOT_OWNER	{Code:19 Message:"a fixed message, not a server wording" Detail:&{Owner:"node-b" OwnerAddr:"node-b.example:4433" Epoch:7 Slot:5}}
+error/detail-STALE_EPOCH	{Code:20 Message:"a fixed message, not a server wording" Detail:&{Owner:"node-b" OwnerAddr:"node-b.example:4433" Epoch:8}}
+error/detail-OWNER_DOWN	{Code:21 Message:"a fixed message, not a server wording" Detail:&{Owner:"node-b" MissingSlots:12}}
+error/detail-NO_QUORUM	{Code:22 Message:"a fixed message, not a server wording" Detail:&{Voters:3 Answered:1}}
+error/detail-LEASE_LAPSED	{Code:24 Message:"a fixed message, not a server wording" Detail:&{Node:"node-b" LapsedMs:250}}
+error/detail-RF_UNSUPPORTED	{Code:23 Message:"a fixed message, not a server wording" Detail:&{Voters:3 Rf:3 DataMembers:2}}
+error/detail-NOT_FOUND	{Code:1 Message:"a fixed message, not a server wording" Detail:&{Expired:true}}
+admin/create-database	{Cmd:"create_database" Name:"app"}
+admin/create-database-rf-memory	{Cmd:"create_database" Name:"app" RF:&2 Storage:"memory"}
+admin/create-bucket-no-fields	{Cmd:"create_bucket" Database:"app" Name:"User" Fields:[]}
+admin/create-bucket-every-member	{Cmd:"create_bucket" Database:"app" Name:"User" Fields:[{Name:"Name" Type:"string"} {Name:"Born" Type:"datetime"} {Name:"Author" Type:"string" Of:"app.User"} {Name:"Purchases" Type:"fifoStore"} {Name:"Photos" Type:"lifoStore"} {Name:"Friends" Type:"hashStore"} {Name:"Recipes" Type:"btreeStore"} {Name:"Books" Type:"heapStore"} {Name:"Data" Type:"blobStore"}] Aggregates:[{Store:"Purchases" Kind:"sum" Field:"Price"} {Store:"Purchases" Kind:"sum by" Field:"Price" By:"Sku"} {Store:"Purchases" Kind:"count by" By:"Sku"}] ExpireField:"Born" ExpirePaths:map["Photos":"Taken" "Purchases":"At"]}
+admin/alter-bucket-add-drop	{Cmd:"alter_bucket" Database:"app" Bucket:"User" Add:[{Name:"Age" Type:"int"} {Name:"Editor" Type:"string" Of:"User"}] Drop:["Born"]}
+admin/alter-bucket-set-expire	{Cmd:"alter_bucket" Database:"app" Bucket:"User" Add:[] Drop:[] ExpireField:"Born"}
+admin/alter-bucket-drop-expire	{Cmd:"alter_bucket" Database:"app" Bucket:"User" Add:[] Drop:[] DropExpire:true}
+admin/drop-bucket	{Cmd:"drop_bucket" Database:"app" Bucket:"User"}
+admin/drop-bucket-expect-id	{Cmd:"drop_bucket" Database:"app" Bucket:"User" ExpectBucketID:2254663609795936277}
+admin/describe-bucket	{Cmd:"describe_bucket" Database:"app" Bucket:"User"}
+admin/show-buckets	{Cmd:"show_buckets" Database:"app"}
+admin/show-buckets-page	{Cmd:"show_buckets" Database:"app" Limit:&50 Cursor:x'010203'}
+admin/show-databases	{Cmd:"show_databases"}
+admin/show-databases-page	{Cmd:"show_databases" Limit:&50 Cursor:x'010203'}
+admin/describe-database	{Cmd:"describe_database" Database:"app"}
+admin/describe-database-page	{Cmd:"describe_database" Database:"app" Limit:&50 Cursor:x'010203'}
+admin/describe-node	{Cmd:"describe_node"}
+admin/join	{Cmd:"join" NodeID:"node-b" DataAddr:"node-b.example:4433"}
+admin/join-witness	{Cmd:"join" NodeID:"node-w" DataAddr:"node-w.example:4433" Witness:true}
+admin/promote	{Cmd:"promote" NodeID:"node-b"}
+admin/leave	{Cmd:"leave" NodeID:"node-b"}
+admin/remove-node	{Cmd:"remove_node" NodeID:"node-b"}
+admin/replace-node	{Cmd:"replace_node" NodeID:"node-b" DataAddr:"node-c.example:4433"}
+admin/seeding-status	{Cmd:"seeding_status"}
+admin/seeding-status-every-member	{Cmd:"seeding_status" Database:"app" Slot:&5 Limit:&50 Cursor:x'010203'}
+admin/seeding-retry	{Cmd:"seeding_retry" Database:"app" Slot:&5}
+admin/seeding-forget	{Cmd:"seeding_forget" Database:"app" Slot:&5}
+admin/seeding-forget-anyway	{Cmd:"seeding_forget" Database:"app" Slot:&8191 Anyway:true}
+adminreply/create-database	{Cmd:"create_database" DatabaseID:4 RF:2 Storage:"disk"}
+adminreply/create-database-memory	{Cmd:"create_database" DatabaseID:5 RF:1 Storage:"memory"}
+adminreply/create-bucket	{Cmd:"create_bucket" BucketID:2254663609795936277 State:"active" DeclVersion:3 SchemaVersionSeen:2 Fields:[{ID:1 Name:"_id_" Type:"string"} {ID:2 Name:"Name" Type:"string"} {ID:3 Name:"Author" Type:"string" Of:"app.User"} {ID:4 Name:"Purchases" Type:"fifoStore"}]}
+adminreply/alter-bucket-aggregates-expiry	{Cmd:"alter_bucket" BucketID:2254663609795936277 State:"active" DeclVersion:3 SchemaVersionSeen:2 Fields:[{ID:1 Name:"_id_" Type:"string"} {ID:2 Name:"Name" Type:"string"} {ID:3 Name:"Author" Type:"string" Of:"app.User"} {ID:4 Name:"Purchases" Type:"fifoStore"}] ExpireField:"Born" ExpireStores:[{Field:"Purchases" Path:"At"}] Aggregates:[{Store:"Purchases" ID:1 Kind:"sum" Field:"Price" State:"ready"} {Store:"Purchases" ID:2 Kind:"sum by" Field:"Price" By:"Sku" State:"building"} {Store:"Purchases" ID:3 Kind:"count by" By:"Sku" State:"ready"}]}
+adminreply/describe-bucket-every-member	{Cmd:"describe_bucket" BucketID:2254663609795936277 State:"active" DeclVersion:3 SchemaVersionSeen:2 Fields:[{ID:1 Name:"_id_" Type:"string"} {ID:2 Name:"Name" Type:"string"} {ID:3 Name:"Author" Type:"string" Of:"app.User"} {ID:4 Name:"Purchases" Type:"fifoStore"}] ExpireField:"Born" ExpireStores:[{Field:"Purchases" Path:"At"}] ExpirePending:1000 ExpirePendingMore:true Aggregates:[{Store:"Purchases" ID:1 Kind:"sum" Field:"Price" State:"ready"} {Store:"Purchases" ID:2 Kind:"sum by" Field:"Price" By:"Sku" State:"building"} {Store:"Purchases" ID:3 Kind:"count by" By:"Sku" State:"ready"}]}
+adminreply/describe-bucket-id-only	{Cmd:"describe_bucket" BucketID:2254663609795936277 State:"active" Fields:[{ID:1 Name:"_id_" Type:"string"}]}
+adminreply/drop-bucket	{Cmd:"drop_bucket" BucketID:2254663609795936277 State:"dropping"}
+adminreply/show-buckets-empty	{Cmd:"show_buckets" Buckets:[]}
+adminreply/show-buckets-page	{Cmd:"show_buckets" Buckets:[{Name:"Order" BucketID:257 State:"active"} {Name:"User" BucketID:2254663609795936277 State:"dropping"}] More:true Cursor:x'010203'}
+adminreply/show-databases-empty	{Cmd:"show_databases" Databases:[]}
+adminreply/show-databases-page	{Cmd:"show_databases" More:true Cursor:x'617070' Databases:[{Name:"app" DatabaseID:4 RF:2} {Name:"logs" DatabaseID:5 RF:1}]}
+adminreply/describe-database-disk	{Cmd:"describe_database" DatabaseID:4 RF:2 Storage:"disk" Buckets:[{Name:"Order" BucketID:257 State:"active"} {Name:"User" BucketID:2254663609795936277 State:"dropping"}] More:true Cursor:x'010203' Name:"app"}
+adminreply/describe-database-memory	{Cmd:"describe_database" DatabaseID:5 RF:1 Storage:"memory" MemoryBytes:4096 MemoryCapBytes:1073741824 Buckets:[] Name:"cache"}
+adminreply/describe-node	{Cmd:"describe_node" Node:&{NodeID:"node-a" Version:"v1.1.0" UptimeMS:86400000 MemberState:"active" Members:3 Voters:3 Epoch:7 Leader:"node-a" DefaultRF:1 Serving:"ok"}}
+adminreply/describe-node-every-member	{Cmd:"describe_node" Node:&{NodeID:"node-a" Version:"v1.1.0" UptimeMS:86400000 MemberState:"active" Members:3 Voters:3 Epoch:7 Leader:"node-a" DefaultRF:1 Serving:"no_quorum" StateRange:"1-2" RefusedPeers:["node-z (data channel) speaks 3-4 (writes 4)"] ClusterVersion:2 Host:&{CPUs:4 HostCPUs:16 Load:&{One:f'3fe0000000000000' Five:f'3ff4000000000000' Fifteen:f'4000000000000000'} MemUsed:1073741824 MemTotal:8589934592 MemSource:"cgroup" Process:&{Used:536870912 Limit:4294967296}}}}
+adminreply/describe-node-host-cpus-only	{Cmd:"describe_node" Node:&{NodeID:"node-a" Version:"v1.1.0" UptimeMS:86400000 MemberState:"active" Members:3 Voters:3 Epoch:7 Leader:"node-a" DefaultRF:1 Serving:"ok" Host:&{CPUs:2}}}
+adminreply/join	{Cmd:"join" Membership:&{Epoch:8 StateSeq:21 Result:"node-b: join committed"}}
+adminreply/promote	{Cmd:"promote" Membership:&{Epoch:8 StateSeq:21 Result:"node-b: promote committed"}}
+adminreply/leave	{Cmd:"leave" Membership:&{Epoch:8 StateSeq:21 Result:"node-b: leave committed"}}
+adminreply/remove-node	{Cmd:"remove_node" Membership:&{Epoch:8 StateSeq:21 Result:"node-b: remove_node committed"}}
+adminreply/replace-node	{Cmd:"replace_node" Membership:&{Epoch:8 StateSeq:21 Result:"node-b: replace_node committed"}}
+adminreply/seeding-status-empty	{Cmd:"seeding_status" Seeding:&{Rows:[]}}
+adminreply/seeding-status-every-state	{Cmd:"seeding_status" Seeding:&{Rows:[{Database:"app" State:"placing"} {Database:"app" Slot:1 State:"seeding" Source:"node-b" BytesDone:1048576 BytesKnown:4194304 Entries:9000 IdleMS:1500} {Database:"app" Slot:2 State:"stalled" Source:"node-b" BytesDone:1048576 BytesKnown:4194304 Entries:9000 IdleMS:1500 Refusal:"a fixed message, not a server wording"} {Database:"app" Slot:3 State:"ready"} {Database:"app" Slot:4 State:"retired"} {Database:"app" Slot:5 State:"retiring"}] More:true Cursor:x'0005617070'}}
+adminreply/seeding-retry	{Cmd:"seeding_retry" Seeding:&{Database:"app" Slot:5}}
+adminreply/seeding-forget	{Cmd:"seeding_forget" Seeding:&{Database:"app" Slot:8191}}
+record/insert	{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}]}
+record/upsert	{Class:3 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}]}
+record/update-every-code	{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:2 OpCode:1 Value:x'1001000000'} {FieldID:3 OpCode:2} {FieldID:4 OpCode:3 Value:x'1003000000'} {FieldID:5 OpCode:4 Value:x'1004000000'} {FieldID:6 OpCode:5 Value:x'1005000000'} {FieldID:7 OpCode:6 Value:x'1006000000'} {FieldID:8 OpCode:7 Value:x'1007000000'} {FieldID:9 OpCode:8 Value:x'1008000000'} {FieldID:10 OpCode:9 Value:x'000b'}]}
+record/delete	{Class:4 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000'}
+record/verb-push	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:1 Value:x'2a0000000576001d000000001d00000002536b750004000000412d3100105072696365000c0000000000'}]}
+record/verb-pop-one	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:2}]}
+record/verb-pop-n	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:2 Value:x'0c000000106e000300000000'}]}
+record/verb-take	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:3 Value:x'0f000000026b00030000006b310000'}]}
+record/verb-put	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:4 Value:x'34000000026b00030000006b31000576001d000000001d00000002536b750004000000412d3100105072696365000c0000000000'}]}
+record/verb-inc	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:5 Value:x'2b000000026b00030000006b31000576001000000000100000001056696577730001000000000872000100'}]}
+record/claim	{Class:6 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Count:5 Now:1700000000000 Nonce:x'202122232425262728292a2b2c2d2e2f'}
+record/ack	{Class:7 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Now:1700000000000 LeaseID:x'404142434445464748494a4b4c4d4e4f'}
+record/release	{Class:8 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Now:1700000000000 LeaseID:x'404142434445464748494a4b4c4d4e4f'}
+record/extend	{Class:9 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4}] Now:1700000000000 Until:1700000030000 LeaseID:x'404142434445464748494a4b4c4d4e4f'}
+record/flag-stamp	{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}] Stamp:{Fields:[2 3] Claims:[{FieldID:2 ClaimedAt:1700000000001} {FieldID:3 ClaimedAt:1700000000002}]}}
+record/flag-stamp-fields-only	{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}] Stamp:{Fields:[2]}}
+record/flag-stamp-claims-only	{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}] Stamp:{Claims:[{FieldID:2 ClaimedAt:1700000000001}]}}
+record/flag-system-delete	{Class:4 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' System:true}
+record/flag-system-store-verb	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:2}] System:true}
+record/flag-expire-bucket-form	{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}] Expire:[{FieldID:3}] ExpireNow:1700000000000}
+record/flag-expire-store-path	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:1 Value:x'2a0000000576001d000000001d00000002536b750004000000412d3100105072696365000c0000000000'}] Expire:[{FieldID:4 Path:x'4174'}] ExpireNow:1700000000000}
+record/flag-aggregates	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:1 Value:x'2a0000000576001d000000001d00000002536b750004000000412d3100105072696365000c0000000000'}] Aggregates:[{AggID:1 Kind:1 Field:"Price"} {AggID:2 Kind:2 Field:"Price" By:"Sku"} {AggID:3 Kind:3 By:"Sku"}]}
+record/every-flag	{Class:5 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:4 Verb:2}] Stamp:{Fields:[2 3] Claims:[{FieldID:2 ClaimedAt:1700000000001} {FieldID:3 ClaimedAt:1700000000002}]} Expire:[{FieldID:4 Path:x'4174'} {FieldID:6}] ExpireNow:1700000000000 System:true Aggregates:[{AggID:1 Kind:1 Field:"Price"} {AggID:2 Kind:2 Field:"Price" By:"Sku"} {AggID:3 Kind:3 By:"Sku"}]}
+record/epoch-opener	{Class:1 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 PrevEnd:{Epoch:41 Seq:98213} EncID:x'5075310000' IDValue:x'0203000000753100' Fields:[{FieldID:2 Value:x'020400000041646100'} {FieldID:3 Value:x'1024000000'}]}
+record/trailer-update-return-after	{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:3 OpCode:3 Value:x'1001000000'}] Return:1}
+record/trailer-update-return-before	{Class:2 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Fields:[{FieldID:3 OpCode:3 Value:x'1001000000'}] Return:2}
+record/trailer-delete-return-before	{Class:4 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'5075310000' Return:2}
+component/Null	1
+keyed/get-id-Null	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'10'}}
+component/Bool	2
+keyed/get-id-Bool	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'2001'}}
+component/Number	18
+keyed/get-id-Number	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'308080808080808080808080808080808080'}}
+component/DateTime	9
+keyed/get-id-DateTime	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'400000018bcfe56800'}}
+component/String	7
+keyed/get-id-String	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'506100ff620000'}}
+component/Binary	7
+keyed/get-id-Binary	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'60de00ffad0000'}}
+component/ObjectID	13
+keyed/get-id-ObjectID	{Prologue:{Epoch:7 StateSeq:9 DeadlineMs:1500} Read:&{Class:129 BucketID:2254663609795936277 DeclVersion:3 SchemaVersionSeen:2 EncID:x'70abababababababababababab'}}

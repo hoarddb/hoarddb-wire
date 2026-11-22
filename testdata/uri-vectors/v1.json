@@ -1,0 +1,330 @@
+{
+  "format_version": 1,
+  "license": "Apache-2.0",
+  "spec": "handbook/trust.md section 6",
+  "maintenance": "Hand-maintained. A URI never crosses the wire and there is no server-side URI parser to generate these from, so this file is written by hand. A generator MUST NOT write to, absorb, or overwrite this directory. A change to handbook/trust.md section 6 that is not reflected here in the same commit is a breaking change to two public libraries.",
+  "defaults": {
+    "scheme": "hoarddb",
+    "port": 7433,
+    "dialTimeoutMs": 10000
+  },
+  "cases": [
+    {
+      "name": "host only, every default materialised",
+      "uri": "hoarddb://localhost",
+      "expect": {
+        "hosts": [{ "host": "localhost", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": null,
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "explicit port and database",
+      "uri": "hoarddb://localhost:7433/app",
+      "expect": {
+        "hosts": [{ "host": "localhost", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "database and bucket in the path",
+      "uri": "hoarddb://localhost:7433/app/Users",
+      "expect": {
+        "hosts": [{ "host": "localhost", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": "Users",
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "trailing slash means no database",
+      "uri": "hoarddb://localhost/",
+      "expect": {
+        "hosts": [{ "host": "localhost", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": null,
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "username with no password",
+      "uri": "hoarddb://admin@db.internal:7433/app",
+      "expect": {
+        "hosts": [{ "host": "db.internal", "port": 7433 }],
+        "username": "admin",
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "username, password and clientName",
+      "uri": "hoarddb://root:s3cr3t@db.internal:7433/app?clientName=etl",
+      "expect": {
+        "hosts": [{ "host": "db.internal", "port": 7433 }],
+        "username": "root",
+        "password": "s3cr3t",
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": "etl", "dialTimeoutMs": 10000 }
+      },
+      "redacted": "hoarddb://root:***@db.internal:7433/app?clientName=etl"
+    },
+    {
+      "name": "bracketed IPv6 literal, default port",
+      "uri": "hoarddb://[::1]/app",
+      "expect": {
+        "hosts": [{ "host": "::1", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "bracketed IPv6 literal with explicit port",
+      "uri": "hoarddb://[2001:db8::1]:7433/app",
+      "expect": {
+        "hosts": [{ "host": "2001:db8::1", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "holder list, three nodes, database and bucket",
+      "uri": "hoarddb://n1:7433,n2:7433,n3:7433/app/orders",
+      "expect": {
+        "hosts": [
+          { "host": "n1", "port": 7433 },
+          { "host": "n2", "port": 7433 },
+          { "host": "n3", "port": 7433 }
+        ],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": "orders",
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "holder list with mixed and defaulted ports",
+      "uri": "hoarddb://n1,n2:7500/app",
+      "expect": {
+        "hosts": [
+          { "host": "n1", "port": 7433 },
+          { "host": "n2", "port": 7500 }
+        ],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "one fingerprint, one host, plus dialTimeoutMs",
+      "uri": "hoarddb://admin@n1:7433/app?fingerprint=SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68&dialTimeoutMs=3000",
+      "expect": {
+        "hosts": [{ "host": "n1", "port": 7433 }],
+        "username": "admin",
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": {
+          "fingerprints": ["SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68"],
+          "authToken": null,
+          "clientName": null,
+          "dialTimeoutMs": 3000
+        }
+      }
+    },
+    {
+      "name": "one fingerprint applies to every host in the list",
+      "uri": "hoarddb://n1,n2,n3/app?fingerprint=SHA256:a1b2c3d4e5f60718293a4b5c6d7e8f900a1b2c3d4e5f60718293a4b5c6d7e8f9",
+      "expect": {
+        "hosts": [
+          { "host": "n1", "port": 7433 },
+          { "host": "n2", "port": 7433 },
+          { "host": "n3", "port": 7433 }
+        ],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": {
+          "fingerprints": ["SHA256:a1b2c3d4e5f60718293a4b5c6d7e8f900a1b2c3d4e5f60718293a4b5c6d7e8f9"],
+          "authToken": null,
+          "clientName": null,
+          "dialTimeoutMs": 10000
+        },
+        "pin_for_host": {
+          "n1": "SHA256:a1b2c3d4e5f60718293a4b5c6d7e8f900a1b2c3d4e5f60718293a4b5c6d7e8f9",
+          "n2": "SHA256:a1b2c3d4e5f60718293a4b5c6d7e8f900a1b2c3d4e5f60718293a4b5c6d7e8f9",
+          "n3": "SHA256:a1b2c3d4e5f60718293a4b5c6d7e8f900a1b2c3d4e5f60718293a4b5c6d7e8f9"
+        }
+      }
+    },
+    {
+      "name": "two fingerprints, two hosts, matched positionally",
+      "uri": "hoarddb://n1,n2/app?fingerprint=SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68&fingerprint=SHA256:0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "expect": {
+        "hosts": [
+          { "host": "n1", "port": 7433 },
+          { "host": "n2", "port": 7433 }
+        ],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": {
+          "fingerprints": [
+            "SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68",
+            "SHA256:0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0"
+          ],
+          "authToken": null,
+          "clientName": null,
+          "dialTimeoutMs": 10000
+        },
+        "pin_for_host": {
+          "n1": "SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68",
+          "n2": "SHA256:0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0"
+        }
+      }
+    },
+    {
+      "name": "percent-encoded colon in the fingerprint value",
+      "uri": "hoarddb://n1/app?fingerprint=SHA256%3A3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68",
+      "expect": {
+        "hosts": [{ "host": "n1", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": {
+          "fingerprints": ["SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68"],
+          "authToken": null,
+          "clientName": null,
+          "dialTimeoutMs": 10000
+        }
+      }
+    },
+    {
+      "name": "authToken maps to LoginRequest.token, not to the password slot",
+      "uri": "hoarddb://admin@n1/app?authToken=eyJhbGciOiJFZERTQSJ9.abc",
+      "expect": {
+        "hosts": [{ "host": "n1", "port": 7433 }],
+        "username": "admin",
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": {
+          "fingerprints": [],
+          "authToken": "eyJhbGciOiJFZERTQSJ9.abc",
+          "clientName": null,
+          "dialTimeoutMs": 10000
+        }
+      }
+    },
+    {
+      "name": "percent-encoded at-sign and colon in the password",
+      "uri": "hoarddb://root:p%40ss%3Aword@n1/app",
+      "expect": {
+        "hosts": [{ "host": "n1", "port": 7433 }],
+        "username": "root",
+        "password": "p@ss:word",
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      },
+      "redacted": "hoarddb://root:***@n1/app"
+    },
+    {
+      "name": "percent-encoded slash in a database name",
+      "uri": "hoarddb://n1/my%2Fdb/Users",
+      "expect": {
+        "hosts": [{ "host": "n1", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "my/db",
+        "bucket": "Users",
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    },
+    {
+      "name": "canonicalisation: uppercase scheme, uppercase fingerprint prefix and hex, mixed-case parameter name",
+      "uri": "HoardDB://n1/app?FingerPrint=sha256:3B7C1F0A9D2E4C6B8A0F5D3E7C1B9A4F6D2E8C0B5A7F9D1E3C5B7A9F0D2E4C68",
+      "expect": {
+        "hosts": [{ "host": "n1", "port": 7433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": {
+          "fingerprints": ["SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68"],
+          "authToken": null,
+          "clientName": null,
+          "dialTimeoutMs": 10000
+        }
+      }
+    },
+    {
+      "name": "the internode port parses; naming it is documentation, not a parser rule",
+      "uri": "hoarddb://localhost:4433/app",
+      "expect": {
+        "hosts": [{ "host": "localhost", "port": 4433 }],
+        "username": null,
+        "password": null,
+        "database": "app",
+        "bucket": null,
+        "params": { "fingerprints": [], "authToken": null, "clientName": null, "dialTimeoutMs": 10000 }
+      }
+    }
+  ],
+  "invalid": [
+    { "name": "a foreign scheme", "uri": "mongodb://localhost/app", "error_contains": "is not a hoardDB scheme" },
+    { "name": "DNS SRV form refused by name", "uri": "hoarddb+srv://cluster.example.com/app", "error_contains": "SRV" },
+    { "name": "TLS-naming scheme variant", "uri": "hoarddb+tls://localhost/app", "error_contains": "hoarddb+tls" },
+    { "name": "no host", "uri": "hoarddb:///app", "error_contains": "host" },
+    { "name": "empty entry in the host list", "uri": "hoarddb://n1,/app", "error_contains": "host" },
+    { "name": "unbracketed IPv6 literal", "uri": "hoarddb://::1:7433/app", "error_contains": "[" },
+    { "name": "port out of range", "uri": "hoarddb://n1:70000/app", "error_contains": "65535" },
+    { "name": "port is not a number", "uri": "hoarddb://n1:http/app", "error_contains": "port" },
+    { "name": "unencoded at-sign in the password", "uri": "hoarddb://u:p@ss@host/app", "error_contains": "%40" },
+    { "name": "insecure is refused in a URI", "uri": "hoarddb://host/app?insecure=true", "error_contains": "--insecure" },
+    { "name": "a replica-set parameter", "uri": "hoarddb://host/app?replicaSet=rs0", "error_contains": "replica" },
+    { "name": "a write-concern parameter", "uri": "hoarddb://host/app?w=majority", "error_contains": "w" },
+    { "name": "unknown parameter names the accepted set", "uri": "hoarddb://host/app?nonsense=1", "error_contains": "fingerprint" },
+    { "name": "fingerprint missing its prefix", "uri": "hoarddb://host/app?fingerprint=3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68", "error_contains": "SHA256:" },
+    { "name": "fingerprint of the wrong length", "uri": "hoarddb://host/app?fingerprint=SHA256:3b7c1f0a", "error_contains": "64" },
+    { "name": "fingerprint that is not hex", "uri": "hoarddb://host/app?fingerprint=SHA256:zzzz1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4czz", "error_contains": "hex" },
+    { "name": "two fingerprints, three hosts", "uri": "hoarddb://n1,n2,n3/app?fingerprint=SHA256:3b7c1f0a9d2e4c6b8a0f5d3e7c1b9a4f6d2e8c0b5a7f9d1e3c5b7a9f0d2e4c68&fingerprint=SHA256:0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0", "error_contains": "3" },
+    { "name": "a third path segment", "uri": "hoarddb://host/app/Users/extra", "error_contains": "path" },
+    { "name": "fragments are not part of the grammar", "uri": "hoarddb://host/app#frag", "error_contains": "fragment" },
+    { "name": "dialTimeoutMs is not a number", "uri": "hoarddb://host/app?dialTimeoutMs=soon", "error_contains": "dialTimeoutMs" },
+    { "name": "password with an unencoded slash is refused without repeating it", "uri": "hoarddb://u:Zq7xK9Wm3pL/x@host/app", "error_contains": "percent-encode", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "password with an unencoded question mark is refused without repeating it", "uri": "hoarddb://u:Zq7xK9Wm3pL?x@host/app", "error_contains": "percent-encode", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "password with an extra at-sign is refused without repeating it", "uri": "hoarddb://u:p@Zq7xK9Wm3pL@host/app", "error_contains": "percent-encode", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "password with a hash is refused without repeating it", "uri": "hoarddb://u:Zq7xK9Wm3pL#x@host/app", "error_contains": "fragment", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "at-sign after the first slash is refused without repeating it", "uri": "hoarddb://u:p@host/app/Zq7xK9Wm3pL@x", "error_contains": "percent-encode", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "bad percent-escape in the password is refused without repeating it", "uri": "hoarddb://u:Zq7xK9Wm3pL%zz@host/app", "error_contains": "percent-escape", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "password-like parameter name with no at-sign is refused without repeating it", "uri": "hoarddb://host/app?Zq7xK9Wm3pL=1", "error_contains": "accepted parameters", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "fingerprint value of the wrong length is refused without repeating it", "uri": "hoarddb://host/app?fingerprint=SHA256:Zq7xK9Wm3pL", "error_contains": "64", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] },
+    { "name": "fingerprint value with no prefix is refused without repeating it", "uri": "hoarddb://host/app?fingerprint=Zq7xK9Wm3pL", "error_contains": "SHA256:", "error_excludes": ["Zq7xK9Wm3pL", "Zq7"] }
+  ]
+}

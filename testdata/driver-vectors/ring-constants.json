@@ -1,0 +1,2136 @@
+{
+  "format": "hoarddb-ring-constants/1",
+  "license": "Apache-2.0",
+  "source": "github.com/hoarddb/hoarddb-wire",
+  "opcodes": [
+    {
+      "name": "OpRingList",
+      "value": 218
+    },
+    {
+      "name": "OpRingCount",
+      "value": 219
+    },
+    {
+      "name": "OpRingKeyed",
+      "value": 220
+    },
+    {
+      "name": "OpRingAdmin",
+      "value": 221
+    },
+    {
+      "name": "OpRingTopology",
+      "value": 222
+    },
+    {
+      "name": "OpRingReply",
+      "value": 223
+    },
+    {
+      "name": "OpRingBatch",
+      "value": 224
+    },
+    {
+      "name": "OpRingGetMany",
+      "value": 225
+    }
+  ],
+  "write_classes": [
+    {
+      "name": "OpInsert",
+      "value": 1
+    },
+    {
+      "name": "OpUpdate",
+      "value": 2
+    },
+    {
+      "name": "OpUpsert",
+      "value": 3
+    },
+    {
+      "name": "OpDelete",
+      "value": 4
+    },
+    {
+      "name": "OpStoreVerb",
+      "value": 5
+    },
+    {
+      "name": "OpClaim",
+      "value": 6
+    },
+    {
+      "name": "OpAck",
+      "value": 7
+    },
+    {
+      "name": "OpRelease",
+      "value": 8
+    },
+    {
+      "name": "OpExtend",
+      "value": 9
+    }
+  ],
+  "read_classes": [
+    {
+      "name": "RingClassGet",
+      "value": 129
+    },
+    {
+      "name": "RingClassPeek",
+      "value": 130
+    },
+    {
+      "name": "RingClassStoreList",
+      "value": 131
+    },
+    {
+      "name": "RingClassStoreCount",
+      "value": 132
+    },
+    {
+      "name": "RingClassLeaseGet",
+      "value": 135
+    },
+    {
+      "name": "RingClassStoreGet",
+      "value": 136
+    },
+    {
+      "name": "RingClassGetFields",
+      "value": 137
+    },
+    {
+      "name": "RingClassNearest",
+      "value": 138
+    },
+    {
+      "name": "RingClassAggregate",
+      "value": 139
+    }
+  ],
+  "verbs": [
+    {
+      "name": "VerbPush",
+      "value": 1
+    },
+    {
+      "name": "VerbPop",
+      "value": 2
+    },
+    {
+      "name": "VerbTake",
+      "value": 3
+    },
+    {
+      "name": "VerbPut",
+      "value": 4
+    },
+    {
+      "name": "VerbInc",
+      "value": 5
+    }
+  ],
+  "update_operators": [
+    {
+      "name": "UpdateSet",
+      "value": 1
+    },
+    {
+      "name": "UpdateUnset",
+      "value": 2
+    },
+    {
+      "name": "UpdateInc",
+      "value": 3
+    },
+    {
+      "name": "UpdateMul",
+      "value": 4
+    },
+    {
+      "name": "UpdatePush",
+      "value": 5
+    },
+    {
+      "name": "UpdateAddToSet",
+      "value": 6
+    },
+    {
+      "name": "UpdateMin",
+      "value": 7
+    },
+    {
+      "name": "UpdateMax",
+      "value": 8
+    },
+    {
+      "name": "UpdateRenameTo",
+      "value": 9
+    }
+  ],
+  "key_tags": [
+    {
+      "name": "TagNull",
+      "value": 16
+    },
+    {
+      "name": "TagBool",
+      "value": 32
+    },
+    {
+      "name": "TagNumber",
+      "value": 48
+    },
+    {
+      "name": "TagDateTime",
+      "value": 64
+    },
+    {
+      "name": "TagString",
+      "value": 80
+    },
+    {
+      "name": "TagBinary",
+      "value": 96
+    },
+    {
+      "name": "TagObjectID",
+      "value": 112
+    }
+  ],
+  "trailer": {
+    "guard_bit": 1,
+    "return_mask": 6,
+    "return_shift": 1,
+    "return_modes": [
+      {
+        "name": "ReturnNone",
+        "value": 0
+      },
+      {
+        "name": "ReturnAfter",
+        "value": 1
+      },
+      {
+        "name": "ReturnBefore",
+        "value": 2
+      }
+    ]
+  },
+  "aggregate_kinds": [
+    {
+      "name": "AggregateReadDescribe",
+      "value": 0
+    },
+    {
+      "name": "AggregateReadSum",
+      "value": 1
+    },
+    {
+      "name": "AggregateReadSumBy",
+      "value": 2
+    },
+    {
+      "name": "AggregateReadCountBy",
+      "value": 3
+    }
+  ],
+  "metrics": [
+    {
+      "name": "RingMetricCosine",
+      "value": 1
+    },
+    {
+      "name": "RingMetricDot",
+      "value": 2
+    },
+    {
+      "name": "RingMetricL2",
+      "value": 3
+    }
+  ],
+  "codes": [
+    {
+      "value": 1,
+      "name": "NOT_FOUND",
+      "exit": 2,
+      "ring": false
+    },
+    {
+      "value": 3,
+      "name": "PERMISSION_DENIED",
+      "exit": 2,
+      "ring": false
+    },
+    {
+      "value": 4,
+      "name": "INVALID_ARGUMENT",
+      "exit": 2,
+      "ring": false
+    },
+    {
+      "value": 6,
+      "name": "UNAVAILABLE",
+      "exit": 8,
+      "ring": false
+    },
+    {
+      "value": 14,
+      "name": "RESULT_TOO_LARGE",
+      "exit": 2,
+      "ring": false
+    },
+    {
+      "value": 16,
+      "name": "FIELD_TYPE",
+      "exit": 2,
+      "ring": false
+    },
+    {
+      "value": 18,
+      "name": "DOCUMENT_EXISTS",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 19,
+      "name": "NOT_OWNER",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 20,
+      "name": "STALE_EPOCH",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 21,
+      "name": "OWNER_DOWN",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 22,
+      "name": "NO_QUORUM",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 23,
+      "name": "RF_UNSUPPORTED",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 24,
+      "name": "LEASE_LAPSED",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 25,
+      "name": "EPOCH_FENCED",
+      "exit": 0,
+      "ring": true
+    },
+    {
+      "value": 26,
+      "name": "SEQ_GAP",
+      "exit": 0,
+      "ring": true
+    },
+    {
+      "value": 27,
+      "name": "LOG_BELOW_HORIZON",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 28,
+      "name": "STATE_MOVED",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 29,
+      "name": "CONFLICT",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 30,
+      "name": "CLUSTER_MISMATCH",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 31,
+      "name": "NOT_A_DATA_NODE",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 32,
+      "name": "SCHEMA_NOT_CURRENT",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 33,
+      "name": "BUCKET_DROPPING",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 34,
+      "name": "DECL_UNAVAILABLE",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 35,
+      "name": "BUCKET_EXISTS",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 36,
+      "name": "RESERVED_NAME",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 37,
+      "name": "BUCKET_ID_COLLISION",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 38,
+      "name": "SEED_NOT_HELD",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 39,
+      "name": "REPLACE_TARGET_HAS_DATA",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 40,
+      "name": "MINT_FAILED",
+      "exit": 8,
+      "ring": true
+    },
+    {
+      "value": 41,
+      "name": "CORRUPT_KEY",
+      "exit": 2,
+      "ring": true
+    },
+    {
+      "value": 42,
+      "name": "SEED_HELD",
+      "exit": 8,
+      "ring": true
+    }
+  ],
+  "limits": [
+    {
+      "name": "AggregateMaxLimit",
+      "value": 10000
+    },
+    {
+      "name": "DefaultPageLimit",
+      "value": 100
+    },
+    {
+      "name": "HeaderLen",
+      "value": 40
+    },
+    {
+      "name": "MaxAdminRefusedPeers",
+      "value": 64
+    },
+    {
+      "name": "MaxAfter",
+      "value": 2059
+    },
+    {
+      "name": "MaxBatchOps",
+      "value": 255
+    },
+    {
+      "name": "MaxEncodedID",
+      "value": 1024
+    },
+    {
+      "name": "MaxExpandFields",
+      "value": 8
+    },
+    {
+      "name": "MaxFields",
+      "value": 64
+    },
+    {
+      "name": "MaxGetManyKeys",
+      "value": 255
+    },
+    {
+      "name": "MaxGuardTerms",
+      "value": 16
+    },
+    {
+      "name": "MaxMemberResult",
+      "value": 512
+    },
+    {
+      "name": "MaxName",
+      "value": 1021
+    },
+    {
+      "name": "MaxNearestName",
+      "value": 255
+    },
+    {
+      "name": "MaxNearestVector",
+      "value": 16384
+    },
+    {
+      "name": "MaxNodeText",
+      "value": 256
+    },
+    {
+      "name": "MaxOptionsTrailer",
+      "value": 4096
+    },
+    {
+      "name": "MaxPageLimit",
+      "value": 10000
+    },
+    {
+      "name": "MaxPeek",
+      "value": 100
+    },
+    {
+      "name": "MaxPeekCount",
+      "value": 100
+    },
+    {
+      "name": "MaxRingErrorPayload",
+      "value": 69632
+    },
+    {
+      "name": "MaxSubScanBody",
+      "value": 33554432
+    },
+    {
+      "name": "MaxUserFields",
+      "value": 999
+    },
+    {
+      "name": "MaxVerbArgBytes",
+      "value": 1048576
+    },
+    {
+      "name": "MaxVerbKeyBytes",
+      "value": 1024
+    },
+    {
+      "name": "RequestIDLen",
+      "value": 16
+    },
+    {
+      "name": "RingPrologueLen",
+      "value": 20
+    },
+    {
+      "name": "SeedingCursorMax",
+      "value": 1023
+    },
+    {
+      "name": "SeedingMaxPage",
+      "value": 1000
+    },
+    {
+      "name": "SeedingMaxRefusal",
+      "value": 512
+    },
+    {
+      "name": "Slots",
+      "value": 8192
+    },
+    {
+      "name": "VerbArgDepth",
+      "value": 8
+    }
+  ],
+  "words": {
+    "admin_command": [
+      {
+        "name": "AdminCreateDatabase",
+        "value": "create_database"
+      },
+      {
+        "name": "AdminCreateBucket",
+        "value": "create_bucket"
+      },
+      {
+        "name": "AdminAlterBucket",
+        "value": "alter_bucket"
+      },
+      {
+        "name": "AdminDropBucket",
+        "value": "drop_bucket"
+      },
+      {
+        "name": "AdminDescribeBucket",
+        "value": "describe_bucket"
+      },
+      {
+        "name": "AdminShowBuckets",
+        "value": "show_buckets"
+      },
+      {
+        "name": "AdminShowDatabases",
+        "value": "show_databases"
+      },
+      {
+        "name": "AdminDescribeDatabase",
+        "value": "describe_database"
+      },
+      {
+        "name": "AdminDescribeNode",
+        "value": "describe_node"
+      },
+      {
+        "name": "AdminJoin",
+        "value": "join"
+      },
+      {
+        "name": "AdminPromote",
+        "value": "promote"
+      },
+      {
+        "name": "AdminLeave",
+        "value": "leave"
+      },
+      {
+        "name": "AdminRemoveNode",
+        "value": "remove_node"
+      },
+      {
+        "name": "AdminReplaceNode",
+        "value": "replace_node"
+      },
+      {
+        "name": "AdminSeedingStatus",
+        "value": "seeding_status"
+      },
+      {
+        "name": "AdminSeedingRetry",
+        "value": "seeding_retry"
+      },
+      {
+        "name": "AdminSeedingForget",
+        "value": "seeding_forget"
+      }
+    ],
+    "batch_outcome": [
+      {
+        "name": "BatchOK",
+        "value": "ok"
+      },
+      {
+        "name": "BatchPartial",
+        "value": "partial"
+      }
+    ],
+    "not_applied_reason": [
+      {
+        "name": "ReasonGuard",
+        "value": "guard"
+      }
+    ],
+    "seed_state": [
+      {
+        "name": "SeedPlacing",
+        "value": "placing"
+      },
+      {
+        "name": "SeedSeeding",
+        "value": "seeding"
+      },
+      {
+        "name": "SeedStalled",
+        "value": "stalled"
+      },
+      {
+        "name": "SeedReady",
+        "value": "ready"
+      },
+      {
+        "name": "SeedRetired",
+        "value": "retired"
+      },
+      {
+        "name": "SeedRetiring",
+        "value": "retiring"
+      }
+    ],
+    "serving": [
+      {
+        "name": "ServingOK",
+        "value": "ok"
+      },
+      {
+        "name": "ServingNoQuorum",
+        "value": "no_quorum"
+      },
+      {
+        "name": "ServingLeaseLapsed",
+        "value": "lease_lapsed"
+      },
+      {
+        "name": "ServingEpochBehind",
+        "value": "epoch_behind"
+      },
+      {
+        "name": "ServingReplaying",
+        "value": "replaying"
+      },
+      {
+        "name": "ServingDiverged",
+        "value": "diverged"
+      }
+    ],
+    "storage": [
+      {
+        "name": "AdminStorageDisk",
+        "value": "disk"
+      },
+      {
+        "name": "AdminStorageMemory",
+        "value": "memory"
+      }
+    ],
+    "write_outcome": [
+      {
+        "name": "OutcomeApplied",
+        "value": "applied"
+      },
+      {
+        "name": "OutcomeAppliedDegraded",
+        "value": "applied_degraded"
+      },
+      {
+        "name": "OutcomeNotApplied",
+        "value": "not_applied"
+      },
+      {
+        "name": "OutcomeUnknown",
+        "value": "unknown"
+      }
+    ]
+  },
+  "type_words": {
+    "scalar": [
+      "string",
+      "int32",
+      "int",
+      "double",
+      "decimal",
+      "number",
+      "bool",
+      "datetime",
+      "bsontimestamp",
+      "binary",
+      "uuid",
+      "objectid",
+      "object",
+      "array",
+      "regex",
+      "null",
+      "any"
+    ],
+    "store": [
+      "fifoStore",
+      "lifoStore",
+      "hashStore",
+      "btreeStore",
+      "heapStore",
+      "blobStore"
+    ],
+    "synonyms": {
+      "boolean": "bool",
+      "date": "datetime",
+      "float": "double",
+      "int64": "int",
+      "integer": "int",
+      "timestamp": "datetime"
+    }
+  },
+  "value_rules": {
+    "slot_min": 0,
+    "slot_max": 8191,
+    "port_min": 1,
+    "port_max": 65535,
+    "bucket_id": "16 lowercase hex digits",
+    "field_name_max_bytes": 255,
+    "witness_only_on_join": true
+  },
+  "documents": [
+    {
+      "name": "ElementArgDoc",
+      "members": [
+        {
+          "name": "v",
+          "type": "binary"
+        }
+      ]
+    },
+    {
+      "name": "IncArgDoc",
+      "members": [
+        {
+          "name": "k",
+          "type": "string"
+        },
+        {
+          "name": "v",
+          "type": "binary"
+        },
+        {
+          "name": "r",
+          "type": "bool",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "PopArgDoc",
+      "members": [
+        {
+          "name": "n",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "PutArgDoc",
+      "members": [
+        {
+          "name": "k",
+          "type": "string"
+        },
+        {
+          "name": "v",
+          "type": "binary"
+        }
+      ]
+    },
+    {
+      "name": "RingReplyDoc",
+      "members": [
+        {
+          "name": "write_outcome",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "copies_confirmed",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "served_by",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "position",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "found",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "elements",
+          "type": "array",
+          "optional": true,
+          "element": "binary"
+        },
+        {
+          "name": "keys",
+          "type": "array",
+          "optional": true,
+          "element": "string"
+        },
+        {
+          "name": "priorities",
+          "type": "array",
+          "optional": true,
+          "element": "int64"
+        },
+        {
+          "name": "scores",
+          "type": "array",
+          "optional": true,
+          "element": "double"
+        },
+        {
+          "name": "scanned",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "skipped",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "entries",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "lease",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "count",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "more",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "deduped",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "guard_field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "document",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "document_truncated",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "epoch",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "state_seq",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "outcome",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "answers",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "ringAnswer"
+        },
+        {
+          "name": "expanded",
+          "type": "array",
+          "optional": true,
+          "element": "binary"
+        },
+        {
+          "name": "expand_filtered",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "served_from",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "aggregate",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "TakeKeyArgDoc",
+      "members": [
+        {
+          "name": "k",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminAggregateDoc",
+      "members": [
+        {
+          "name": "store",
+          "type": "string"
+        },
+        {
+          "name": "kind",
+          "type": "string"
+        },
+        {
+          "name": "field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "by",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminAlterDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "bucket",
+          "type": "string"
+        },
+        {
+          "name": "add",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminFieldDoc"
+        },
+        {
+          "name": "drop",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "string"
+        },
+        {
+          "name": "expire_field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "drop_expire",
+          "type": "bool",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminBucketReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "bucket_id",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "string"
+        },
+        {
+          "name": "decl_version",
+          "type": "int64"
+        },
+        {
+          "name": "schema_version_seen",
+          "type": "int64"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminReplyFieldDoc"
+        },
+        {
+          "name": "aggregates",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "adminReplyAggregateDoc"
+        },
+        {
+          "name": "expire_field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "expire_stores",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "adminExpirePathDoc"
+        },
+        {
+          "name": "expire_pending",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "expire_pending_more",
+          "type": "bool",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminCreateBucketDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminFieldDoc"
+        },
+        {
+          "name": "aggregates",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "adminAggregateDoc"
+        },
+        {
+          "name": "expire_field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "expire_paths",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "adminExpirePathDoc"
+        }
+      ]
+    },
+    {
+      "name": "adminCreateDatabaseDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "rf",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "storage",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminDatabaseReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database_id",
+          "type": "int64"
+        },
+        {
+          "name": "rf",
+          "type": "int32"
+        },
+        {
+          "name": "storage",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminDatabasesReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "databases",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminListedDatabaseDoc"
+        },
+        {
+          "name": "more",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminDescribeDatabaseReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "database_id",
+          "type": "int64"
+        },
+        {
+          "name": "rf",
+          "type": "int32"
+        },
+        {
+          "name": "storage",
+          "type": "string"
+        },
+        {
+          "name": "buckets",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminListedDoc"
+        },
+        {
+          "name": "more",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "memory_bytes",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "memory_cap_bytes",
+          "type": "int64",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminDescribeDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "bucket",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminDropDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "bucket",
+          "type": "string"
+        },
+        {
+          "name": "expect_bucket_id",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminDropReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "bucket_id",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminExpirePathDoc",
+      "members": [
+        {
+          "name": "field",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminFieldDoc",
+      "members": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "of",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminHostDoc",
+      "members": [
+        {
+          "name": "cpus",
+          "type": "int32"
+        },
+        {
+          "name": "host_cpus",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "load_1",
+          "type": "double",
+          "optional": true
+        },
+        {
+          "name": "load_5",
+          "type": "double",
+          "optional": true
+        },
+        {
+          "name": "load_15",
+          "type": "double",
+          "optional": true
+        },
+        {
+          "name": "mem_used",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "mem_total",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "mem_source",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "process_used",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "process_limit",
+          "type": "int64",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminListReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "buckets",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminListedDoc"
+        },
+        {
+          "name": "more",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminListedDatabaseDoc",
+      "members": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "database_id",
+          "type": "int64"
+        },
+        {
+          "name": "rf",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "adminListedDoc",
+      "members": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "bucket_id",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminMemberJoinDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "node_id",
+          "type": "string"
+        },
+        {
+          "name": "data_addr",
+          "type": "string"
+        },
+        {
+          "name": "witness",
+          "type": "bool",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminMemberNodeDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "node_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminMemberReplaceDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "node_id",
+          "type": "string"
+        },
+        {
+          "name": "data_addr",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminMemberReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "epoch",
+          "type": "int64"
+        },
+        {
+          "name": "state_seq",
+          "type": "int64"
+        },
+        {
+          "name": "result",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminNodeReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "node_id",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "uptime_ms",
+          "type": "int64"
+        },
+        {
+          "name": "member_state",
+          "type": "string"
+        },
+        {
+          "name": "members",
+          "type": "int32"
+        },
+        {
+          "name": "voters",
+          "type": "int32"
+        },
+        {
+          "name": "epoch",
+          "type": "int64"
+        },
+        {
+          "name": "leader",
+          "type": "string"
+        },
+        {
+          "name": "default_rf",
+          "type": "int32"
+        },
+        {
+          "name": "serving",
+          "type": "string"
+        },
+        {
+          "name": "state_range",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "refused_peers",
+          "type": "array",
+          "optional": true,
+          "element": "string"
+        },
+        {
+          "name": "cluster_version",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "host",
+          "type": "document",
+          "optional": true,
+          "element_document": "adminHostDoc"
+        }
+      ]
+    },
+    {
+      "name": "adminNodeRequestDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminReplyAggregateDoc",
+      "members": [
+        {
+          "name": "store",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "int32"
+        },
+        {
+          "name": "kind",
+          "type": "string"
+        },
+        {
+          "name": "field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "by",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminReplyFieldDoc",
+      "members": [
+        {
+          "name": "id",
+          "type": "int32"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "of",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminSeedRowDoc",
+      "members": [
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "slot",
+          "type": "int32"
+        },
+        {
+          "name": "state",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "bytes_done",
+          "type": "int64"
+        },
+        {
+          "name": "bytes_known",
+          "type": "int64"
+        },
+        {
+          "name": "entries",
+          "type": "int64"
+        },
+        {
+          "name": "idle_ms",
+          "type": "int64"
+        },
+        {
+          "name": "refusal",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "adminSeedingActionDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "slot",
+          "type": "int32"
+        },
+        {
+          "name": "anyway",
+          "type": "bool",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminSeedingActionReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "slot",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "adminSeedingStatusDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "limit",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminSeedingStatusReplyDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "rows",
+          "type": "array",
+          "written_when_empty": true,
+          "element": "document",
+          "element_document": "adminSeedRowDoc"
+        },
+        {
+          "name": "more",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminShowDatabasesDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "adminShowDoc",
+      "members": [
+        {
+          "name": "cmd",
+          "type": "string"
+        },
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "leaseLapsedDetailDoc",
+      "members": [
+        {
+          "name": "node",
+          "type": "string"
+        },
+        {
+          "name": "lapsed_ms",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "noQuorumDetailDoc",
+      "members": [
+        {
+          "name": "voters",
+          "type": "int32"
+        },
+        {
+          "name": "answered",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "notFoundDetailDoc",
+      "members": [
+        {
+          "name": "expired",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "notOwnerDetailDoc",
+      "members": [
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "owner_addr",
+          "type": "string"
+        },
+        {
+          "name": "epoch",
+          "type": "int64"
+        },
+        {
+          "name": "slot",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "ownerDownDetailDoc",
+      "members": [
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "missing_slots",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "rfUnsupportedDetailDoc",
+      "members": [
+        {
+          "name": "rf",
+          "type": "int32"
+        },
+        {
+          "name": "voters",
+          "type": "int32"
+        },
+        {
+          "name": "data_members",
+          "type": "int32"
+        }
+      ]
+    },
+    {
+      "name": "ringAnswer",
+      "members": [
+        {
+          "name": "reply",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "binary",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "ringCountDoc",
+      "members": [
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "bucket",
+          "type": "string"
+        },
+        {
+          "name": "filter",
+          "type": "document",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "ringErrorDoc",
+      "members": [
+        {
+          "name": "code",
+          "type": "int32"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "detail",
+          "type": "document",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "ringExpandDoc",
+      "members": [
+        {
+          "name": "field",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "database",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "bucket",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "optional": true,
+          "element": "string"
+        },
+        {
+          "name": "where",
+          "type": "document",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "ringListDoc",
+      "members": [
+        {
+          "name": "database",
+          "type": "string"
+        },
+        {
+          "name": "bucket",
+          "type": "string"
+        },
+        {
+          "name": "filter",
+          "type": "document",
+          "optional": true
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "optional": true,
+          "element": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int32",
+          "optional": true
+        },
+        {
+          "name": "cursor",
+          "type": "binary",
+          "optional": true
+        },
+        {
+          "name": "epoch",
+          "type": "int64",
+          "optional": true
+        },
+        {
+          "name": "local",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "expand",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "ringExpandDoc"
+        }
+      ]
+    },
+    {
+      "name": "ringOptionsDoc",
+      "members": [
+        {
+          "name": "local",
+          "type": "bool",
+          "optional": true
+        },
+        {
+          "name": "expand",
+          "type": "array",
+          "optional": true,
+          "element": "document",
+          "element_document": "ringExpandDoc"
+        }
+      ]
+    },
+    {
+      "name": "staleEpochDetailDoc",
+      "members": [
+        {
+          "name": "epoch",
+          "type": "int64"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "owner_addr",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}
